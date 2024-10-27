@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <style>
+        /* Basic reset for consistency */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* Header styling similar to the screenshot layout */
+        .dashboard-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            background-color: #003300; /* Dark green background */
+            color: white;
+        }
+
+        .dashboard-header h1 {
+            font-size: 24px;
+        }
+
+        /* Styling the form for logout button */
+        .logout-button {
+            background-color: #66cc00; /* Matching green for consistency */
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+        }
+
+        /* Main content styling */
+        .dashboard-content {
+            flex: 1;
+            padding: 20px;
+            text-align: center;
+            background-color: #f5f5f5; /* Light gray background */
+        }
+
+        .calculator, .tabs, .tab-content {
+            max-width: 600px;
+            margin: 20px auto;
+        }
+
+        /* Tab button styling */
+        .tab-button {
+            padding: 10px;
+            margin-right: 5px;
+            border: none;
+            background-color: #003300; /* Matching header background */
+            color: white;
+            cursor: pointer;
+        }
+
+        .tab-button.active {
+            background-color: #66cc00;
+        }
+
+        /* Footer styling to match prototype layout */
+        .dashboard-footer {
+            background-color: #003300;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .footer-sections {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+        }
+
+        .footer-column {
+            flex: 1;
+            padding: 10px;
+        }
+
+        .footer-column h4 {
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+
+        .footer-column a {
+            display: block;
+            color: #66cc00;
+            text-decoration: none;
+            margin-bottom: 5px;
+        }
+
+        .footer-column a:hover {
+            text-decoration: underline;
+        }
+
+        .newsletter input[type="email"] {
+            padding: 8px;
+            width: 70%;
+            margin-top: 10px;
+        }
+
+        .subscribe-button {
+            background-color: #66cc00;
+            color: white;
+            padding: 8px 16px;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header with logout button -->
+    <header class="dashboard-header">
+        <h1>ST. MICHAEL GUARD WATCH SECURITY SYSTEM INC.</h1>
+        <form action="{{ url_for('logout') }}" method="get" style="display: inline;">
+            <button type="submit" class="logout-button">Logout</button>
+        </form>
+    </header>
+    
+<!-- Main content area -->
+<main class="dashboard-content">
+    <!-- Tabs for Calculator, Inquiries, and Feedback -->
+    <div class="tabs">
+        <button class="tab-button" onclick="openTab(event, 'calculator')">Cost Distribution Calculator</button>
+        <button class="tab-button" onclick="openTab(event, 'inquiries')">Pending Inquiries</button>
+        <button class="tab-button" onclick="openTab(event, 'feedback')">Manager Feedback</button>
+    </div>
+
+    <!-- Content box for each tab, initially hidden -->
+    <div id="calculator" class="tab-content">
+        <h3>Cost Distribution Calculator</h3>
+        <labeltwo for="cost">Enter Total Cost (in ₱):</labeltwo>
+        <input type="number" id="cost" placeholder="Enter amount" required>
+        
+        <labeltwo for="percentage">Percentage Distribution (%):</labeltwo>
+        <input type="number" id="percentage" placeholder="Enter percentage" required>
+
+        <button onclick="calculateDistribution()">Calculate</button>
+        
+        <ptwo id="calculator-result">Result will be displayed here.</ptwo>
+    </div>
+
+    <div id="inquiries" class="tab-content">
+        <h3>Pending Inquiries</h3>
+        <ul id="inquiries-list">
+            <li>Inquiry #1: Please review the budget allocation for project A.</li>
+            <li>Inquiry #2: Request for additional resources in department B.</li>
+            <li>Inquiry #3: Need an update on the status of cost distribution.</li>
+        </ul>
+    </div>
+
+    <div id="feedback" class="tab-content">
+        <h3>Manager Feedback</h3>
+        <ul id="feedback-list">
+            <li>Feedback #1: Increase the budget allocation by 5% for Project C.</li>
+            <li>Feedback #2: Ensure timely submission of cost reports.</li>
+            <li>Feedback #3: Review cost efficiency in Department D.</li>
+        </ul>
+    </div>
+</main>
+
+<script>
+// Calculator functionality
+function calculateDistribution() {
+    const cost = parseFloat(document.getElementById("cost").value);
+    const percentage = parseFloat(document.getElementById("percentage").value);
+
+    if (isNaN(cost) || isNaN(percentage) || percentage < 0 || percentage > 100) {
+        document.getElementById("calculator-result").innerText = "Please enter valid numbers and ensure percentage is between 0 and 100.";
+        return;
+    }
+
+    const result = (cost * percentage) / 100;
+    document.getElementById("calculator-result").innerText = `Distributed Amount: ₱${result.toFixed(2)}`;
+}
+
+// Tab functionality for Calculator, Inquiries, and Feedback
+function openTab(event, tabName) {
+    const tabContent = document.getElementsByClassName("tab-content");
+    const tabButtons = document.getElementsByClassName("tab-button");
+
+    // Hide all tab contents and remove "active" class from all buttons
+    for (let i = 0; i < tabContent.length; i++) {
+        tabContent[i].style.display = "none";
+        tabButtons[i].classList.remove("active");
+    }
+
+    // Show the selected tab content and add "active" class to its button
+    document.getElementById(tabName).style.display = "block";
+    event.currentTarget.classList.add("active");
+}
+</script>
+
+<style>
+/* Ensure tabs display horizontally, but content displays below */
+.tabs {
+    display: flex;
+    margin-bottom: 10px;
+    flex-wrap: wrap;
+}
+
+.tab-button {
+    padding: 10px 15px;
+    margin-right: 5px;
+    border: none;
+    background-color: #ccc;
+    cursor: pointer;
+}
+
+.tab-button.active {
+    background-color: #66cc00;
+    color: white;
+}
+
+/* Style for the content box below tabs */
+.tab-content {
+    border: 1px solid #ddd;
+    padding: 20px;
+    margin-top: 10px;
+    background-color: #f9f9f9;
+    display: none; /* Hide all tab contents by default */
+    width: 100%; /* Ensure full width below tabs */
+}
+/* Ensure the main content area flows vertically */
+.dashboard-content {
+    display: block; /* Ensure vertical stacking */
+}
+</style>
+
+
+
+    <script src="{{ url_for('static', filename='dashboard.js') }}"></script>
+</body>
+</html>

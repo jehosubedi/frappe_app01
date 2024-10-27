@@ -1,0 +1,212 @@
+/* Basic Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #F0FFF0; /* Light greenish background */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+/* Shared Container Styles for Login, Register, and Dashboard Pages */
+.login-container, .register-container, .dashboard-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 800px;
+}
+
+.login-card, .register-card {
+    background-color: #022c22; /* Dark green background */
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    width: 100%;
+}
+
+/* Heading */
+.login-card h2, .register-card h2 {
+    color: #F0E68C; /* Khaki heading text */
+    margin-bottom: 1rem;
+}
+
+/* Form Styles */
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    color: #F0E68C; /* Khaki label text */
+    display: block;
+    margin: 0.5rem 0 0.25rem;
+    text-align: left;
+}
+labeltwo {
+    color: #03a87c; /* Teal label text */
+    display: block;
+    margin: 0.5rem 0 0.25rem;
+    text-align: left;
+}
+
+input[type="email"], input[type="password"], input[type="text"] {
+    width: 100%;
+    padding: 0.5rem;
+    border: none;
+    border-radius: 4px;
+    margin-bottom: 1rem;
+    background-color: #fff;
+    color: #333;
+}
+
+/* Button Styles */
+button {
+    width: 100%;
+    padding: 0.75rem;
+    border: none;
+    border-radius: 4px;
+    background-color: #03a87c; /* Teal button color */
+    color: #F0E68C; /* Khaki text */
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #028e63; /* Darker teal on hover */
+}
+
+/* Link and Text Styles */
+p {
+    color: #ddd; /* Light gray text for "Don't have an account?" */
+    margin-top: 1rem;
+}
+ptwo {
+    color: #03a87c; /* Teal text for "Result will be displayed here?" */
+    margin-top: 1rem;
+}
+
+a {
+    color: #03a87c; /* Teal link color */
+    text-decoration: none;
+    font-weight: bold;
+}
+
+a:hover {
+    color: #028e63; /* Darker teal on hover */
+}
+
+/* Dashboard Styles */
+
+/* Dashboard Header */
+.dashboard-header {
+    background-color: #022c22; /* Match header color with login card */
+    padding: 1rem;
+    text-align: center;
+    width: 100%;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+
+.dashboard-header h1 {
+    color: #F0E68C; /* Khaki header text */
+    font-size: 2rem;
+    margin: 0;
+}
+
+/* Dashboard Content */
+.dashboard-content {
+    padding: 2rem;
+    background-color: #FFFFFF;
+    color: #022c22;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.calculator {
+    margin-bottom: 2rem;
+}
+
+.calculator h2 {
+    color: #03a87c; /* Teal color for section titles */
+    margin-bottom: 1rem;
+}
+
+/* Tabs for Dashboard */
+.tabs {
+    display: flex;
+    margin-top: 1.5rem;
+}
+
+.tab-button {
+    flex: 1;
+    padding: 0.75rem;
+    cursor: pointer;
+    background-color: #03a87c;
+    color: #FFFFFF;
+    border: none;
+    border-radius: 4px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.tab-button:not(:last-child) {
+    margin-right: 1rem;
+}
+
+.tab-button.active {
+    background-color: #028e63; /* Darker teal when active */
+}
+
+.tab-content {
+    display: none;
+    margin-top: 1rem;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+.tab-content h3 {
+    color: #03a87c;
+}
+.flash.success {
+    color: #3c763d;
+    background-color: #dff0d8;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+}
+
+.flash.error {
+    color: #a94442;
+    background-color: #f2dede;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+}
+/* Responsive Design */
+@media (max-width: 500px) {
+    .login-card, .register-card, .dashboard-content {
+        padding: 1.5rem;
+        max-width: 90%;
+    }
+
+    h2, .dashboard-header h1 {
+        font-size: 1.5rem;
+    }
+    
+    button, input[type="email"], input[type="password"], input[type="text"] {
+        font-size: 1rem;
+    }
+}
+
