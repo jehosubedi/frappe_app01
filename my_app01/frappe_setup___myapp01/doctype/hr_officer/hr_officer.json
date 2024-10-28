@@ -1,17 +1,25 @@
 {
  "actions": [],
  "allow_rename": 1,
+ "autoname": "prompt",
  "creation": "2024-10-27 15:02:00.693630",
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
   "section_break_yzhc",
+  "first_name",
+  "last_name",
+  "email",
+  "employee_id",
+  "department",
+  "password",
   "amended_from"
  ],
  "fields": [
   {
    "fieldname": "section_break_yzhc",
-   "fieldtype": "Section Break"
+   "fieldtype": "Section Break",
+   "label": "Registration"
   },
   {
    "fieldname": "amended_from",
@@ -22,15 +30,46 @@
    "print_hide": 1,
    "read_only": 1,
    "search_index": 1
+  },
+  {
+   "fieldname": "first_name",
+   "fieldtype": "Data",
+   "label": "First Name"
+  },
+  {
+   "fieldname": "last_name",
+   "fieldtype": "Data",
+   "label": "Last Name"
+  },
+  {
+   "fieldname": "email",
+   "fieldtype": "Data",
+   "label": "Email"
+  },
+  {
+   "fieldname": "employee_id",
+   "fieldtype": "Int",
+   "label": "Employee ID"
+  },
+  {
+   "fieldname": "department",
+   "fieldtype": "Data",
+   "label": "Department"
+  },
+  {
+   "fieldname": "password",
+   "fieldtype": "Password",
+   "label": "Password"
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2024-10-27 17:09:19.584548",
+ "modified": "2024-10-28 10:58:10.668371",
  "modified_by": "Administrator",
  "module": "Frappe Setup - MyApp01",
  "name": "HR officer",
+ "naming_rule": "Set by user",
  "owner": "Administrator",
  "permissions": [
   {

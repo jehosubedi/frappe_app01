@@ -5,6 +5,12 @@ app_description = "Frappe Test Setup"
 app_email = "tests@email.com"
 app_license = "mit"
 
+
+doc_events = {
+    "User": {
+        "on_update": "my_app01.registration.register_user"  # Hook for user creation
+    }
+}
 # Apps
 # ------------------
 
